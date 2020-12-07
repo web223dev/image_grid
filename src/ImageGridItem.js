@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import imageDetails from './imageDetails';
 
@@ -77,8 +77,6 @@ const OneGridItem = ({src, alt, leftIcons, rightIcons})=>(
 
 
 const ImageGridItem = () => {
-    const [iconClick, setIconClick] = useState(null);
-
     return (
         <div className="container">
             {imageDetails.map((imageDetail) => (
