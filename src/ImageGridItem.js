@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import star_icon from "./images/award_star_gold_blue.png";
-import delete_pic from "./images/picture_delete.png";
+import imageDetails from './imageDetails';
 
 const Fig = styled.div`
     position: relative;
@@ -11,7 +10,6 @@ const Fig = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
 
     img {
         height: auto;
@@ -20,11 +18,6 @@ const Fig = styled.div`
         object-position: 50% 50%;
         border-radius: 5px;
         opacity: 1;
-        -webkit-transition: 0.3s ease-in-out;
-        transition: 0.3s ease-in-out;
-    }
-    &:hover img {
-        opacity: 0.5;
     }
 `;
 
@@ -40,248 +33,65 @@ const Icons = styled.div`
         width: auto;
         height: auto;
     }
+    button{
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        padding: 0;
+    }
+    button:focus{
+        outline: none;
+    }
 `;
 
+const OneGridItem = ({src, alt, leftIcons, rightIcons, setIconClick})=>(
+    <div className="grid-item">
+        <Fig>
+            <img
+                src={src}
+                alt={alt}
+            />
+            <Icons>
+                <div>
+                <button onClick={setIconClick}>
+                    <img src={leftIcons.src} alt={leftIcons.alt} />
+                </button>
+                <button onClick={setIconClick}>
+                    <img src={leftIcons.src} alt={leftIcons.alt} />
+                </button>
+                </div>
+                <div>
+                <button onClick={setIconClick}>
+                    <img src={rightIcons.src} alt={rightIcons.alt} />
+                </button>
+                <button onClick={setIconClick}>
+                    <img src={rightIcons.src} alt={rightIcons.alt} />
+                </button>
+                </div>
+            </Icons>
+        </Fig>
+    </div>
+)
+
+
 const ImageGridItem = () => {
+    const [iconClick, setIconClick] = useState(null);
+
     return (
         <div className="container">
-            <div className="grid-item">
-                <Fig>
-                    <img
-                        src="https://placekitten.com/304/331"
-                        alt="pretty kitty"
+            {
+                imageDetails.map((imageDetail) => 
+                    <OneGridItem 
+                        key={imageDetail.id}
+                        src={imageDetail.src}
+                        alt={imageDetail.alt}
+                        leftIcons={imageDetail.leftIcons}
+                        rightIcons={imageDetail.rightIcons}
+                        setIconClick = {() => setIconClick(alert("clicked!!!"))}
                     />
-                    <Icons>
-                        <a href="#">
-                            <img src={star_icon} alt="star" />
-                        </a>
-                        <a href="#">
-                            <img src={delete_pic} alt="pic_delete" />
-                        </a>
-                    </Icons>
-                </Fig>
-            </div>
-
-            <div className="grid-item">
-                <Fig>
-                    <img
-                        src="https://placekitten.com/383/356"
-                        alt="pretty kitty"
-                    />
-                    <Icons>
-                        <a href="#">
-                            <img src={star_icon} alt="star" />
-                        </a>
-                        <a href="#">
-                            <img src={delete_pic} alt="pic_delete" />
-                        </a>
-                    </Icons>
-                </Fig>
-            </div>
-
-            <div className="grid-item">
-                <Fig>
-                    <img
-                        src="https://placekitten.com/329/264"
-                        alt="pretty kitty"
-                    />
-                    <Icons>
-                        <a href="#">
-                            <img src={star_icon} alt="star" />
-                        </a>
-                        <a href="#">
-                            <img src={delete_pic} alt="pic_delete" />
-                        </a>
-                    </Icons>
-                </Fig>
-            </div>
-
-            <div className="grid-item">
-                <Fig>
-                    <img
-                        src="https://placekitten.com/366/259"
-                        alt="pretty kitty"
-                    />
-                    <Icons>
-                        <a href="#">
-                            <img src={star_icon} alt="star" />
-                        </a>
-                        <a href="#">
-                            <img src={delete_pic} alt="pic_delete" />
-                        </a>
-                    </Icons>
-                </Fig>
-            </div>
-
-            <div className="grid-item">
-                <Fig>
-                    <img
-                        src="https://placekitten.com/389/396"
-                        alt="pretty kitty"
-                    />
-                    <Icons>
-                        <a href="#">
-                            <img src={star_icon} alt="star" />
-                        </a>
-                        <a href="#">
-                            <img src={delete_pic} alt="pic_delete" />
-                        </a>
-                    </Icons>
-                </Fig>
-            </div>
-
-            <div className="grid-item">
-                <Fig>
-                    <img
-                        src="https://placekitten.com/345/258"
-                        alt="pretty kitty"
-                    />
-                    <Icons>
-                        <a href="#">
-                            <img src={star_icon} alt="star" />
-                        </a>
-                        <a href="#">
-                            <img src={delete_pic} alt="pic_delete" />
-                        </a>
-                    </Icons>
-                </Fig>
-            </div>
-
-            <div className="grid-item">
-                <Fig>
-                    <img
-                        src="http://pic.jcmserv3.net/305x200/0e394d/65699e.png"
-                        alt="jmcserv"
-                    />
-                    <Icons>
-                        <a href="#">
-                            <img src={star_icon} alt="star" />
-                        </a>
-                        <a href="#">
-                            <img src={delete_pic} alt="pic_delete" />
-                        </a>
-                    </Icons>
-                </Fig>
-            </div>
-
-            <div className="grid-item">
-                <Fig>
-                    <img
-                        src="http://pic.jcmserv3.net/305x200/0e394d/65699e.png"
-                        alt="jmcserv"
-                    />
-                    <Icons>
-                        <a href="#">
-                            <img src={star_icon} alt="star" />
-                        </a>
-                        <a href="#">
-                            <img src={delete_pic} alt="pic_delete" />
-                        </a>
-                    </Icons>
-                </Fig>
-            </div>
-
-            <div className="grid-item">
-                <Fig>
-                    <img
-                        src="http://pic.jcmserv3.net/166x200/0e394d/65699e.png"
-                        alt="jmcserv"
-                    />
-                    <Icons>
-                        <a href="#">
-                            <img src={star_icon} alt="star" />
-                        </a>
-                        <a href="#">
-                            <img src={delete_pic} alt="pic_delete" />
-                        </a>
-                    </Icons>
-                </Fig>
-            </div>
-
-            <div className="grid-item">
-                <Fig>
-                    <img
-                        src="http://pic.jcmserv3.net/305x200/0e394d/65699e.png"
-                        alt="jmcserv"
-                    />
-                    <Icons>
-                        <a href="#">
-                            <img src={star_icon} alt="star" />
-                        </a>
-                        <a href="#">
-                            <img src={delete_pic} alt="pic_delete" />
-                        </a>
-                    </Icons>
-                </Fig>
-            </div>
-
-            <div className="grid-item">
-                <Fig>
-                    <img
-                        src="http://pic.jcmserv3.net/305x200/0e394d/65699e.png"
-                        alt="jmcserv"
-                    />
-                    <Icons>
-                        <a href="#">
-                            <img src={star_icon} alt="star" />
-                        </a>
-                        <a href="#">
-                            <img src={delete_pic} alt="pic_delete" />
-                        </a>
-                    </Icons>
-                </Fig>
-            </div>
-
-            <div className="grid-item">
-                <Fig>
-                    <img
-                        src="http://pic.jcmserv3.net/166x200/0e394d/65699e.png"
-                        alt="jmcserv"
-                    />
-                    <Icons>
-                        <a href="#">
-                            <img src={star_icon} alt="star" />
-                        </a>
-                        <a href="#">
-                            <img src={delete_pic} alt="pic_delete" />
-                        </a>
-                    </Icons>
-                </Fig>
-            </div>
-
-            <div className="grid-item">
-                <Fig>
-                    <img
-                        src="http://pic.jcmserv3.net/305x200/0e394d/65699e.png"
-                        alt="jmcserv"
-                    />
-                    <Icons>
-                        <a href="#">
-                            <img src={star_icon} alt="star" />
-                        </a>
-                        <a href="#">
-                            <img src={delete_pic} alt="pic_delete" />
-                        </a>
-                    </Icons>
-                </Fig>
-            </div>
-
-            <div className="grid-item">
-                <Fig>
-                    <img
-                        src="http://pic.jcmserv3.net/305x200/0e394d/65699e.png"
-                        alt="jmcserv"
-                    />
-                    <Icons>
-                        <a href="#">
-                            <img src={star_icon} alt="star" />
-                        </a>
-                        <a href="#">
-                            <img src={delete_pic} alt="pic_delete" />
-                        </a>
-                    </Icons>
-                </Fig>
-            </div>
+                )
+            }
+            
         </div>
     );
 };
