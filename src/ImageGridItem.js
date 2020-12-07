@@ -44,7 +44,7 @@ const Icons = styled.div`
     }
 `;
 
-const OneGridItem = ({src, alt, leftIcons, rightIcons, setIconClick})=>(
+const OneGridItem = ({src, alt, leftIcons, rightIcons})=>(
     <div className="grid-item">
         <Fig>
             <img
@@ -53,20 +53,22 @@ const OneGridItem = ({src, alt, leftIcons, rightIcons, setIconClick})=>(
             />
             <Icons>
                 <div>
-                <button onClick={setIconClick}>
-                    <img src={leftIcons.src} alt={leftIcons.alt} />
-                </button>
-                <button onClick={setIconClick}>
-                    <img src={leftIcons.src} alt={leftIcons.alt} />
-                </button>
+                    {
+                        leftIcons.map((leftIcon) => 
+                            <button onClick={leftIcon.onClick}>
+                                <img src={leftIcon.src} alt={leftIcon.alt} />
+                            </button>
+                        )
+                    }
                 </div>
                 <div>
-                <button onClick={setIconClick}>
-                    <img src={rightIcons.src} alt={rightIcons.alt} />
-                </button>
-                <button onClick={setIconClick}>
-                    <img src={rightIcons.src} alt={rightIcons.alt} />
-                </button>
+                    {
+                        rightIcons.map((rightIcon) => 
+                            <button onClick={rightIcon.onClick}>
+                            <img src={rightIcon.src} alt={rightIcon.alt} />
+                        </button>
+                        )
+                    }
                 </div>
             </Icons>
         </Fig>
@@ -79,19 +81,15 @@ const ImageGridItem = () => {
 
     return (
         <div className="container">
-            {
-                imageDetails.map((imageDetail) => 
-                    <OneGridItem 
-                        key={imageDetail.id}
-                        src={imageDetail.src}
-                        alt={imageDetail.alt}
-                        leftIcons={imageDetail.leftIcons}
-                        rightIcons={imageDetail.rightIcons}
-                        setIconClick = {() => setIconClick(alert("clicked!!!"))}
-                    />
-                )
-            }
-            
+            {imageDetails.map((imageDetail) => (
+                <OneGridItem
+                    key={imageDetail.id}
+                    src={imageDetail.src}
+                    alt={imageDetail.alt}
+                    leftIcons={imageDetail.leftIcons}
+                    rightIcons={imageDetail.rightIcons}
+                />
+            ))}
         </div>
     );
 };
